@@ -6,8 +6,8 @@ import pickle
 from _thread import start_new_thread
 import time
 
-host = "127.0.0.1"
-port = 8080
+host = "0.tcp.ap.ngrok.io" # change to 127.0.0.1
+port = 14751              # change to any
 
 s = socket.socket()
 s.connect((host, port))
@@ -214,14 +214,16 @@ def send_req_files(file_list, checkboxes_vars, top):
 
         full_package = pickle.loads(received_data)
 
-        client_file = full_package['Body']['Data']
+        if full_package['Header'] == 'Multiple_File':
 
-        print('Rendering received files')
-        for fi in client_file:
-            
-            with open('Downloads/'+fi['Filename'], 'wb') as f:
+            client_file = full_package['Body']['Data']
 
-                f.write(fi['Data'])
+            print('Rendering received files')
+            for fi in client_file:
+                
+                with open('Downloads/'+fi['Filename'], 'wb') as f:
+
+                    f.write(fi['Data'])
 
 
 def update_chat():

@@ -59,7 +59,7 @@ def handle_req(client, address):
 
                 print(f'[Server] Server successfully received the file from {address[0]}:{address[1]}!')
 
-                shared_list.append(f'{address} has sent a file: {full_package['Body']['Filename']}')
+                shared_list.append(f"{address} has sent a file: {full_package['Body']['Filename']}")
 
                 while True:
                     rnd_num = random.randint(0, 1000)
@@ -118,7 +118,7 @@ def handle_req(client, address):
                 }
                 # shared_file[rnd_num] = {f'{full_package['Body']['Filename']}' : full_package['Body']['Data']}
 
-                print(f'[Server] Server sent {package['Body']['Data']} to {address[0]}:{address[1]}')
+                print(f"[Server] Server sent {package['Body']['Data']} to {address[0]}:{address[1]}")
 
             elif full_package['Header'] == 'Files_Requested':
                 
